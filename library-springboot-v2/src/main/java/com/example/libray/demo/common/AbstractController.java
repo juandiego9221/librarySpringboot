@@ -5,7 +5,6 @@ import com.example.libray.demo.util.RestUtil;
 public abstract class AbstractController<T> extends AbstractReadOnlyController<T>{
 	
 	protected final void createInternal(final T resource) {
-	
 		
 	}
 	

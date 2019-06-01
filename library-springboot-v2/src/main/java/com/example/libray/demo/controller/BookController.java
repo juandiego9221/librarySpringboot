@@ -26,7 +26,7 @@ public class BookController extends AbstractController<Book> implements ISorting
 	@ResponseBody
 	@GetMapping
 	public List<Book> findAll(HttpServletRequest request) {
-		return findAllInterna();
+		return findAllInterna(request);
 	}
 	
 	@ResponseStatus(HttpStatus.CREATED)
