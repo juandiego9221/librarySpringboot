@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Service;
@@ -15,18 +17,24 @@ import com.example.libray.demo.dao.BookJpaDao;
 @Service
 @Transactional
 public class BookServiceImpl extends AbstractService<Book> implements BookService{
+    protected final Logger logger = LoggerFactory.getLogger(getClass());
+
 	
 	@Autowired
 	private BookJpaDao dao;
 
 	@Override
 	public List<Book> findAll() {
-		return getDao().findAll();
+		logger.info("holaaaxx serivce geta");
+
+		return super.findAll();
 	}
 
 	@Override
 	public Book create(Book resource) {
-		return getDao().save(resource);
+//		return getDao().save(resource);
+		logger.info("hola service post");
+		return super.create(resource);
 	}
 
 	@Override

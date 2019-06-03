@@ -5,9 +5,10 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,15 +18,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.libray.demo.bean.Book;
 import com.example.libray.demo.common.AbstractController;
 import com.example.libray.demo.common.ISortingController;
 import com.example.libray.demo.service.BookService;
 
-@Controller
-@RequestMapping
+@RestController
+@RequestMapping(path = "/books")
 public class BookController extends AbstractController<Book> implements ISortingController<Book>{
+
+    protected final Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Autowired
 	private BookService service;
@@ -34,12 +38,15 @@ public class BookController extends AbstractController<Book> implements ISorting
 	@ResponseBody
 	@GetMapping
 	public List<Book> findAll(HttpServletRequest request) {
-		return findAllInterna(request);
+		return findAllInternal(request);
 	}
 	
-	@ResponseStatus(HttpStatus.CREATED)
-	@PostMapping
-	public void create(@RequestBody @Valid final Book resource) {
+	
+//    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
+	public void create(
+		@RequestBody  
+		final Book resource, HttpServletRequest request) {
 		createInternal(resource);
 	}
 	

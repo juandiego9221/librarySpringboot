@@ -13,20 +13,18 @@ public abstract class AbstractRawService<T> implements IRawService<T>{
 	protected ApplicationEventPublisher eventPublisher;
 	
 	public AbstractRawService() {
-		// TODO Auto-generated constructor stub
 		super();
 	}
 
 	@Override
 	public List<T> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return  (List<T>) getDao().findAll();
 	}
 
 	@Override
 	public T create(T resource) {
-		// TODO Auto-generated method stub
-		return null;
+		final T entidadPersistida = getDao().save(resource);
+		return entidadPersistida;
 	}
 	
 	protected abstract PagingAndSortingRepository<T, Long> getDao();
