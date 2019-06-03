@@ -17,5 +17,8 @@ public abstract class AbstractReadOnlyController<T> {
 		
 		return Collections.emptyList();
 	}
+	
+	
+	protected abstract IRawService<T> getService();
 
 }

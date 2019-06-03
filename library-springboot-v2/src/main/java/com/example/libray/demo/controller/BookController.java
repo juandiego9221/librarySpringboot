@@ -5,7 +5,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,9 +21,15 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import com.example.libray.demo.bean.Book;
 import com.example.libray.demo.common.AbstractController;
 import com.example.libray.demo.common.ISortingController;
+import com.example.libray.demo.service.BookService;
 
+@Controller
+@RequestMapping
 public class BookController extends AbstractController<Book> implements ISortingController<Book>{
 
+	@Autowired
+	private BookService service;
+	
 	@Override
 	@ResponseBody
 	@GetMapping
@@ -45,6 +53,10 @@ public class BookController extends AbstractController<Book> implements ISorting
 	@DeleteMapping
 	public void delete(@PathVariable("id") final Long id) {
 		deleteByIdInternal(id);
+	}
+	
+	protected final BookService getService() {
+		return service;
 	}
 	
 	

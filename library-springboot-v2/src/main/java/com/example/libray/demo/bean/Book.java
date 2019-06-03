@@ -1,9 +1,23 @@
 package com.example.libray.demo.bean;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "book")
 public class Book {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "BOOK_ID")
 	private Long id;
+	@Column
 	private String author;
+	@Column
 	private String tittle;
 	
 	public Long getId() {
@@ -24,6 +38,12 @@ public class Book {
 	public void setTittle(String tittle) {
 		this.tittle = tittle;
 	}
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", author=" + author + ", tittle=" + tittle + "]";
+	}
+	
+	
 	
 	
 
