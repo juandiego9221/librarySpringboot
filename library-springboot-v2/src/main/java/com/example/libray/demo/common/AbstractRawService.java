@@ -10,6 +10,8 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
+import com.example.libray.demo.service.BookService;
+
 public abstract class AbstractRawService<T> implements IRawService<T>{
 	
     protected final Logger logger = LoggerFactory.getLogger(getClass());
@@ -33,27 +35,22 @@ public abstract class AbstractRawService<T> implements IRawService<T>{
 	}
 
 	@Override
-	public T create(T resource) {
-		final T entidadPersistida = getDao().save(resource);
-		return entidadPersistida;
+	public void update(T resource, long id) {
+		final Optional<T> entidadObtenida = getDao().findById(id);
+		getDao().save(resource);
+
 	}
 	
 	@Override
-	public void update(T resource) {
-		getDao().save(resource);
+	public T create(T resource) {
+		final T entidadPersistida = getDao().save(resource);
+		return entidadPersistida;
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	public void delete(long id) {
 		final Optional<T> entidadObtenida = getDao().findById(id);
-		if(entidadObtenida ==null) {
-			logger.info("xxxxxx1");
-		}else {
-			logger.info("xxxxxx2");
-		}
-		logger.info("xxxxxx3");
-
 		getDao().delete(entidadObtenida.get());
 	}
 	

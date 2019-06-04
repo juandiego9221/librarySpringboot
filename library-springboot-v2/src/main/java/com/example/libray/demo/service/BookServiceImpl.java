@@ -22,16 +22,9 @@ public class BookServiceImpl extends AbstractService<Book> implements BookServic
 	
 	@Autowired
 	private BookJpaDao dao;
-
-	@Override
-	public List<Book> findAll() {
-		return super.findAll();
-	}
-
-	@Override
-	public Book create(Book resource) {
-		logger.info("hola service post");
-		return super.create(resource);
+	
+	public void actualizar() {
+		
 	}
 
 	@Override
@@ -45,17 +38,9 @@ public class BookServiceImpl extends AbstractService<Book> implements BookServic
 	}
 
 	@Override
-	public void update(Book resource) {
-		super.update(resource);
+	public void updateResource(Book book, long id) {
+		// TODO Auto-generated method stub
+		
 	}
-
-	@Override
-	public void delete(long id) {
-		super.delete(id);
-	}
-
-
-
-
 	
 }

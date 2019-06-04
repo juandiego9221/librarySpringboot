@@ -11,7 +11,7 @@ public interface IOperations<T> {
 	
 	T create(final T resource);
 	
-	void update(final T resource);
+	void update(final T resource, final long id);
 	
 	void delete(final long id);
 	
