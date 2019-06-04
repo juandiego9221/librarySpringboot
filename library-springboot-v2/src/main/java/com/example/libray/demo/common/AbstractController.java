@@ -11,19 +11,18 @@ public abstract class AbstractController<T> extends AbstractReadOnlyController<T
 
 	
 	protected final void createInternal(final T resource) {
-		logger.info("hola 2");
 		RestUtil.checkRequestElementNotNull(resource);
-		logger.info("hola 2");
-		getService().create(resource);
-		
+		getService().create(resource);		
 	}
 	
 	protected final void updateInternal(final long id,final T resource) {
 		RestUtil.checkNotNull(resource);
+		RestUtil.checkRequestElementNotNull(resource);
+		getService().update(resource);
 	}
 	
 	protected final void deleteByIdInternal(final long id) {
-		
+		getService().delete(id);
 	}
 
 }

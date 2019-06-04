@@ -25,14 +25,11 @@ public class BookServiceImpl extends AbstractService<Book> implements BookServic
 
 	@Override
 	public List<Book> findAll() {
-		logger.info("holaaaxx serivce geta");
-
 		return super.findAll();
 	}
 
 	@Override
 	public Book create(Book resource) {
-//		return getDao().save(resource);
 		logger.info("hola service post");
 		return super.create(resource);
 	}
@@ -46,6 +43,19 @@ public class BookServiceImpl extends AbstractService<Book> implements BookServic
 	protected JpaSpecificationExecutor<Book> getSpecificationExecutor() {
 		return dao;
 	}
+
+	@Override
+	public void update(Book resource) {
+		super.update(resource);
+	}
+
+	@Override
+	public void delete(long id) {
+		super.delete(id);
+	}
+
+
+
 
 	
 }

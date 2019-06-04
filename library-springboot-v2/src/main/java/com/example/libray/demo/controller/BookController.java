@@ -41,12 +41,9 @@ public class BookController extends AbstractController<Book> implements ISorting
 		return findAllInternal(request);
 	}
 	
-	
-//    @RequestMapping(method = RequestMethod.POST)
-    @PostMapping
-	public void create(
-		@RequestBody  
-		final Book resource, HttpServletRequest request) {
+	@PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+	public void create(@RequestBody final Book resource) {
 		createInternal(resource);
 	}
 	
@@ -57,7 +54,7 @@ public class BookController extends AbstractController<Book> implements ISorting
 	}
 	
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	@DeleteMapping
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public void delete(@PathVariable("id") final Long id) {
 		deleteByIdInternal(id);
 	}

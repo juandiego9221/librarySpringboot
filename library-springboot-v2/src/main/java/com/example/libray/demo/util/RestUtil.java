@@ -22,7 +22,11 @@ public class RestUtil {
 		 checkRequestState(expression,null);	
 	}
 	
-	
+	public static void checkIfBadRequest(final boolean expression) {
+		checkIfBadRequest(expression,null);
+		
+	}
+		
 	public static <T> T checkNotNull(final T reference, final String message) {
 		if(reference == null) {
 			throw new ResourceNotFoundException(message);
@@ -40,6 +44,12 @@ public class RestUtil {
 	public static void checkRequestState(final boolean expression, final String message) {
 		if(!expression) {
 			throw new ConflictException(message);
+		}
+	}
+	
+	public static void checkIfBadRequest(final boolean expression, final String message) {
+		if(!expression) {
+			throw new BadRequestException(message);
 		}
 	}
 	
